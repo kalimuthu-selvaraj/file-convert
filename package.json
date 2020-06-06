@@ -1,0 +1,23 @@
+{
+  "name": "slide-pdf-image",
+  "version": "1.0.0",
+  "description": "The package export ppt, pptx, odp and key to pdf and/or img[png, jpg, jpeg].",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ppt to pdf and/or image",
+    "pptx to pdf and/or image",
+    "keynote to pdf and/or image",
+    "odp to pdf and/or image",
+    "ppt convert to pdf",
+    "imagemagick",
+    "ghostscript"
+  ],
+  "author": "Kalimuthu Selvaraj",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.0"
+  }
+}
