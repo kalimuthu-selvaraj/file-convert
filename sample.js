@@ -2,7 +2,7 @@ const document = require("../convert");
 
 const options = {
   libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\soffice.exe",
-  sourceFile: "C:\\convert-pdf-img\\metro_style_powerpoint_Dark.pptx",
+  sourceFile: "C:\\convert-pdf-img\\metro_powerpoint.pptx",
   outputDir: "C:\\convert-pdf-img\\files\\",
   img: true,
   imgExt: "jpg",

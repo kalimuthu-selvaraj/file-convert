@@ -62,7 +62,7 @@ function parseCommand(librePath, cmd, convert) {
     _args.push(librePath);
   }
 
-  _args = _args.concat(cmd.split(" "));
+  _args = _args.concat(cmd);
 
   return { _args };
 }
@@ -79,22 +79,21 @@ function run(librePath, cmd, convert) {
     } else {
       _cmd = librePath;
     }
-    console.log(librePath);
-    console.log(_cmd);
-    console.log(_args);
+
     const proc = spawn(_cmd, _args);
 
-    proc
-      .on("error", function (err) {
-        reject(err);
-      })
-      .on("close", (code) => {
-        const status = code === 0 ? "Success" : "Error";
-        resolve(status);
-      })
-      .stdout.on("data", (data) => {
-        // console.log(++i, data);
-      });
+    proc.stdout.on("data", (data) => {
+      // console.log("stdout", data.toString());
+    });
+
+    proc.stderr.on("error", function (err) {
+      reject(err);
+    });
+
+    proc.on("close", (code) => {
+      const status = code === 0 ? "Success" : "Error";
+      resolve(status);
+    });
   });
 }
 
@@ -109,20 +108,39 @@ exports.convert = (
       const baseFileName = path.basename(sourceFile);
       const outputFile = baseFileName.replace(/\.[^.]+$/, ".pdf");
 
-      const outputPath = `${outputDir}${outputFile}`;
       const outputImg = outputFile.replace(/\.pdf$/, `-%d.${imgExt}`);
 
       const ext = path.extname(sourceFile.toLowerCase());
       const extensions = [".pdf", ".pptx", ".ppt", ".odp", ".key"];
 
-      const pdf = `--invisible --convert-to pdf --outdir ${outputDir} ${sourceFile}`;
-      const image = `-verbose -resize ${reSize || 1200} -density ${
-        density || 120
-      } ${outputPath} ${outputDir}${outputImg}`;
+      const pdf = [
+        "--headless",
+        "--convert-to",
+        "pdf",
+        "--outdir",
+        outputDir,
+        sourceFile,
+      ];
 
-      const pdf2Img = `-verbose -resize ${reSize || 1200} -density ${
-        density || 120
-      } ${sourceFile} ${outputDir}${outputImg}`;
+      const image = [
+        "-verbose",
+        "-resize",
+        reSize || 1200,
+        "-density",
+        density || 120,
+        `${outputDir}${outputFile}`,
+        `${outputDir}${outputImg}`,
+      ];
+
+      const pdf2Img = [
+        "-verbose",
+        "-resize",
+        reSize || 1200,
+        "-density",
+        density || 120,
+        sourceFile,
+        `${outputDir}${outputImg}`,
+      ];
 
       if (ext === ".pdf")
         return run(res, pdf2Img, "img").then((res) => callback(null, res));
@@ -133,14 +151,22 @@ exports.convert = (
         } else {
           if (extensions.includes(ext)) {
             run(res, pdf, "pdf").then((pdfRes) => {
-              if (pdf) {
+              if (pdfRes !== "Error") {
                 if (!img) {
                   return callback(null, pdfRes);
                 } else {
                   run(res, image, "img").then((imageRes) => {
-                    return callback(null, imageRes);
+                    if (imageRes !== "Error") {
+                      return callback(null, imageRes);
+                    } else {
+                      return callback(
+                        new Error("Error on image conversion process.")
+                      );
+                    }
                   });
                 }
+              } else {
+                return callback(new Error("Error on pdf conversion process."));
               }
             });
           } else {
