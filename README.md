@@ -4,7 +4,7 @@ Converts `.ppt,` `.pptx`, `.odp` and `.key` file to `pdf or/and image(png, jpg, 
 
 ## Dependencies
 
-Please install `[libreoffice](https://www.libreoffice.org/)`, `[imagemagick](https://www.imagemagick.org/script/index.php)` and might required `[ghostscript](https://www.ghostscript.com/)` for Mac os
+Please install [libreoffice](https://www.libreoffice.org/), [imagemagick](https://www.imagemagick.org/script/index.php) and might required [ghostscript](https://www.ghostscript.com/) for Mac os
 **(Note: Please do restart your machine after installed all required software.)**
 
 ## Usage Example
