@@ -1,10 +1,11 @@
 # convert-pdf-img
 
-Converts `.ppt,` `.pptx`, `.odp` and `.key` to `pdf or/and image(png, jpg, jpeg)`
+Converts `.ppt,` `.pptx`, `.odp` and `.key` file to `pdf or/and image(png, jpg, jpeg, etc)`
 
 ## Dependencies
 
 Please install libreoffice, imagemagick and might required ghostscript for Mac os
+**(Note: Please do restart after installed all required software.)**
 
 ## Usage Example
 
@@ -12,27 +13,14 @@ Please install libreoffice, imagemagick and might required ghostscript for Mac o
 // Import convert module
 const document = require("./convert");
 
-// `.ppt,` `.pptx`, `.odp` and `.key` to pdf and/or image convert options
 const options = {
-  libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\soffice.exe", // This is optional if it is null it will find default installation path inn your OS
-  sourceFile: "C:\\convert-pdf-img\\sample.pptx",
-  outputDir: "C:\\convert-pdf-img\\abc",
+  libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\soffice.exe", // Optional
+  sourceFile: "C:\\convert-pdf-img\\sample.pptx", // `.ppt,` `.pptx`, `.odp`, `.key` and `.pdf`
+  outputDir: "C:\\convert-pdf-img\\sample",
   img: true,
-  imgExt: "jpg",
-  reSize: 800,
-  density: 120,
-};
-
-// Document (`.ppt,` `.pptx`, `.odp` and `.key`) to pdf and/or image convert options
-
-const options = {
-  libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\soffice.exe", // This is optional if it is null it will find default installation path inn your OS
-  sourceFile: "C:\\convert-pdf-img\\sample.pdf",
-  outputDir: "C:\\convert-pdf-img\\",
-  img: true,
-  imgExt: "jpg",
-  reSize: 800,
-  density: 120,
+  imgExt: "jpg", // Optional and Default image conversion format  is.png
+  reSize: 800, // Optional and Default Resize  is 1200
+  density: 120, // Optional and Default density value is 120
 };
 
 // Convert document to pdf and/or image

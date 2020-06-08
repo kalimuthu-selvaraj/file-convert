@@ -108,7 +108,7 @@ exports.convert = (
       const baseFileName = path.basename(sourceFile);
       const outputFile = baseFileName.replace(/\.[^.]+$/, ".pdf");
 
-      const outputImg = outputFile.replace(/\.pdf$/, `-%d.${imgExt}`);
+      const outputImg = outputFile.replace(/\.pdf$/, `-%d.${imgExt || "png"}`);
 
       const ext = path.extname(sourceFile.toLowerCase());
       const extensions = [".pdf", ".pptx", ".ppt", ".odp", ".key"];
@@ -147,7 +147,7 @@ exports.convert = (
 
       fs.access(sourceFile, fs.constants.F_OK, (err) => {
         if (err) {
-          return callback(new Error("Source File does not exist."));
+          return callback(new Error("Source file does not exist."));
         } else {
           if (extensions.includes(ext)) {
             run(res, pdf, "pdf").then((pdfRes) => {
@@ -170,7 +170,7 @@ exports.convert = (
               }
             });
           } else {
-            return callback(new Error("Extension does not support."));
+            return callback(new Error("Invalid extension."));
           }
         }
       });
