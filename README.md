@@ -9,20 +9,22 @@ Please install [libreoffice](https://www.libreoffice.org/), [imagemagick](https:
 
 ## LibreOffice test
 
-libreOfficePath --headless --convert-to pdf --outdir outputDir sourceFile(test.pdf),
+libreOfficeInstallationPath --headless --convert-to pdf --outdir outputDir sourceFile(test.pdf),
+
+## LibreOffice Installation Path
 
 Windows
 
 ```
-C:\\Program Files\\LibreOffice\\program\\soffice.exe or
-C:\\Program Files (x86)\\LibreOffice\\program\\soffice.exe or
+C:\\Program Files\\LibreOffice\\program\\soffice.exe (or)
+C:\\Program Files (x86)\\LibreOffice\\program\\soffice.exe (or)
 C:\\Program Files (x86)\\LIBREO~1\\program\\soffice.exe
 ```
 
 Ubuntu
 
 ```
-/usr/bin/libreoffice or
+/usr/bin/libreoffice (or)
 /usr/bin/soffice
 ```
 

@@ -160,25 +160,31 @@ exports.convert = (
           return callback(new Error("Source file does not exist."));
         } else {
           if (extensions.includes(ext)) {
-            run(res, pdf, "pdf").then((pdfRes) => {
-              if (pdfRes !== "Error") {
-                if (!img) {
-                  return callback(null, pdfRes);
+            run(res, pdf, "pdf")
+              .then((pdfRes) => {
+                if (pdfRes !== "Error") {
+                  if (!img) {
+                    return callback(null, pdfRes);
+                  } else {
+                    run(res, image, "img")
+                      .then((imageRes) => {
+                        if (imageRes !== "Error") {
+                          return callback(null, imageRes);
+                        } else {
+                          return callback(
+                            new Error("Error on image conversion process.")
+                          );
+                        }
+                      })
+                      .catch((e) => callback(e));
+                  }
                 } else {
-                  run(res, image, "img").then((imageRes) => {
-                    if (imageRes !== "Error") {
-                      return callback(null, imageRes);
-                    } else {
-                      return callback(
-                        new Error("Error on image conversion process.")
-                      );
-                    }
-                  });
+                  return callback(
+                    new Error("Error on pdf conversion process.")
+                  );
                 }
-              } else {
-                return callback(new Error("Error on pdf conversion process."));
-              }
-            });
+              })
+              .catch((e) => callback(e));
           } else {
             return callback(new Error("Invalid extension."));
           }
