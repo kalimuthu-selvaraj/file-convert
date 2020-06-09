@@ -1,4 +1,4 @@
-# convert-pdf-img
+# document-convert
 
 Converts `.ppt` `.pptx` `.odp` and `.key` file to `pdf or/and image(png, jpg, jpeg and etc..)`
 
@@ -6,6 +6,35 @@ Converts `.ppt` `.pptx` `.odp` and `.key` file to `pdf or/and image(png, jpg, jp
 
 Please install [libreoffice](https://www.libreoffice.org/), [imagemagick](https://www.imagemagick.org/script/index.php) and might required [ghostscript](https://www.ghostscript.com/) for Mac os
 **(Note: Please do restart your machine after installed all required software.)**
+
+## LibreOffice test
+
+libreOfficePath --headless --convert-to pdf --outdir outputDir sourceFile(test.pdf),
+
+Windows
+
+```
+C:\\Program Files\\LibreOffice\\program\\soffice.exe or
+C:\\Program Files (x86)\\LibreOffice\\program\\soffice.exe or
+C:\\Program Files (x86)\\LIBREO~1\\program\\soffice.exe
+```
+
+Ubuntu
+
+```
+/usr/bin/libreoffice or
+/usr/bin/soffice
+```
+
+Mac OS
+
+```
+/Applications/LibreOffice.app/Contents/MacOS/soffice
+```
+
+## Imagemagic test
+
+convert -verbose -resize 1200 -density 200 test.pdf test-%d.png(%d inserts the images `scene number`)
 
 ## Usage Example
 
