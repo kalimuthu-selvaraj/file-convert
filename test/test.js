@@ -13,21 +13,21 @@ describe("Convert files to pdf or/and image", function () {
     density: 120,
   };
   it("should return source file not exist", function () {
-    options.sourceFile = "C:\\convert-pdf-img\\metro_powerpoint.pptex";
+    options.sourceFile = "C:\\convert-pdf-img\\source\\metro_powerpoint.pptex";
     var result = doc.convert(options, function (err) {
       expect(err.message).to.equal("Source file does not exist.");
     });
   });
 
   it("should return invalid extesion", function () {
-    options.sourceFile = "C:\\convert-pdf-img\\sample.txt";
+    options.sourceFile = "C:\\convert-pdf-img\\source\\sample.txt";
     var result = doc.convert(options, function (err) {
       expect(err.message).to.equal("Invalid extension.");
     });
   });
 
   it("should return error on image conversion process", function () {
-    options.sourceFile = "C:\\convert-pdf-img\\metro_powerpoint.pptx";
+    options.sourceFile = "C:\\convert-pdf-img\\source\\metro_powerpoint.pptx";
     options.outputDir = "abc";
     var result = doc.convert(options, function (err) {
       expect(err.message).to.equal("Error on image conversion process.");

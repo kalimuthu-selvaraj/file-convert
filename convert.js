@@ -33,7 +33,9 @@ function libreOffice(libreofficeBin, callback) {
         break;
       default:
         return callback(
-          new Error(`Operating system not yet supported: ${process.platform}`)
+          new Error(
+            `Operating system not yet supported to convert process: ${process.platform}`
+          )
         );
     }
 
@@ -94,6 +96,14 @@ function run(librePath, cmd, convert) {
       const status = code === 0 ? "Success" : "Error";
       resolve(status);
     });
+  });
+}
+
+function pathExist(outputPath, callback) {
+  fs.access(outputPath, fs.constants.F_OK, (err) => {
+    if (err) {
+      return callback(new Error("Source file does not exist."));
+    }
   });
 }
 

@@ -1,6 +1,6 @@
 # convert-pdf-img
 
-Converts `.ppt,` `.pptx`, `.odp` and `.key` file to `pdf or/and image(png, jpg, jpeg, etc)`
+Converts `.ppt` `.pptx` `.odp` and `.key` file to `pdf or/and image(png, jpg, jpeg and etc..)`
 
 ## Dependencies
 
@@ -15,8 +15,8 @@ const document = require("./convert");
 
 const options = {
   libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\soffice.exe", // Optional
-  sourceFile: "C:\\convert-pdf-img\\sample.pptx", // `.ppt,` `.pptx`, `.odp`, `.key` and `.pdf`
-  outputDir: "C:\\convert-pdf-img\\sample",
+  sourceFile: "C:\\convert-pdf-img\\sample.pptx", // .ppt, .pptx, .odp, .key and .pdf
+  outputDir: "C:\\convert-pdf-img\\output",
   img: false,
   imgExt: "jpg", // Default value png
   reSize: 800, // Default Resize is 1200

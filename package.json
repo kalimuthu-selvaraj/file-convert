@@ -1,10 +1,10 @@
 {
-  "name": "slide-pdf-image",
+  "name": "document-convert",
   "version": "1.0.0",
-  "description": "The package export ppt, pptx, odp and key to pdf and/or img[png, jpg, jpeg].",
+  "description": "The package export ppt, pptx, odp and key files to pdf and/or img(png, jpg, jpeg and etc...).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter spec"
   },
   "keywords": [
     "ppt to pdf and/or image",
@@ -12,18 +12,25 @@
     "keynote to pdf and/or image",
     "odp to pdf and/or image",
     "ppt convert to pdf",
+    "pdf to image",
     "imagemagick",
-    "ghostscript"
+    "ghostscript",
+    "libreoffice"
   ],
-  "author": "Kalimuthu Selvaraj",
+  "author": {
+    "name": "Kalimuthu Selvaraj",
+    "email": "kaalee6@gmail.com",
+    "url": "https://github.com/kalimuthu-selvaraj"
+  },
   "license": "ISC",
   "dependencies": {
-    "async": "^3.2.0",
-    "office-to-pdf": "^4.0.0",
-    "pptx2pdf": "^1.0.10"
+    "async": "^3.2.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^7.2.0"
+  },
+  "engines": {
+    "node": ">=6"
   }
 }
