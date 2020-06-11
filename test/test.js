@@ -18,8 +18,7 @@ describe("Convert files to pdf or/and image", function () {
   });
 
   it("should return invalid extesion", function () {
-    options.libreofficeBin =
-      "C:\\Program Files\\LibreOffice\\program\\soffice.exe";
+    options.libreofficeBin = "/usr/bin/libreoffice";
     options.sourceFile = "C:\\node\\document-convert\\source\\sample.txt";
     document.convert(options).catch((e) => {
       expect(e.message).to.equal("Invalid extension.");
