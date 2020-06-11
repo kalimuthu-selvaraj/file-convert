@@ -28,28 +28,28 @@ describe("Convert files to pdf or/and image", function () {
     });
   });
 
-  // it("should convert pdf to image", function () {
-  //   options.sourceFile = "C:\\node\\document-convert\\source\\Metro_Style.pdf";
-  //   options.outputDir = "C:\\node\\document-convert\\files\\";
-  //   options.reSize = 800;
-  //   document.convert(options).then((res) => {
-  //     expect(res).to.equal("Success");
-  //   });
-  // });
+  it("should convert pdf to image", function () {
+    options.sourceFile = `${global.appRoot}/source/Metro_Style.pdf`;
+    options.outputDir = `${global.appRoot}/files/`;
+    options.reSize = 800;
+    document.convert(options).then((res) => {
+      expect(res).to.equal("Success");
+    });
+  });
 
-  // it("should convert pdf only", function (done) {
-  //   options.sourceFile = "C:\\node\\document-convert\\source\\Metro_Style.pptx";
-  //   options.img = false;
-  //   document.convert(options).then((res) => {
-  //     expect(res).to.equal("Success");
-  //     done();
-  //   });
-  // });
+  it("should convert pdf only", function (done) {
+    options.sourceFile = `${global.appRoot}/source/Metro_Style.pptx`;
+    options.img = false;
+    document.convert(options).then((res) => {
+      expect(res).to.equal("Success");
+      done();
+    });
+  });
 
-  // it("should convert without resize, density and imgExt", function () {
-  //   options.img = true;
-  //   document.convert(options).then((res) => {
-  //     expect(res).to.equal("Success");
-  //   });
-  // });
+  it("should convert without resize, density and imgExt", function () {
+    options.img = true;
+    document.convert(options).then((res) => {
+      expect(res).to.equal("Success");
+    });
+  });
 });
