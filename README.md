@@ -1,5 +1,9 @@
 # document-convert
 
+[![Build Status](https://travis-ci.com/kalimuthu-selvaraj/document-convert.svg?branch=master)](https://travis-ci.com/kalimuthu-selvaraj/document-convert)
+
+[![Coverage Status](https://coveralls.io/repos/github/kalimuthu-selvaraj/document-convert/badge.svg?branch=master)](https://coveralls.io/github/kalimuthu-selvaraj/document-convert?branch=master)
+
 Converts `.ppt` `.pptx` `.odp` and `.key` file to `pdf or/and image(png, jpg, jpeg and etc..)`
 
 ## Dependencies
