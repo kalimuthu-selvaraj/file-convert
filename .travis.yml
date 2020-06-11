@@ -1,5 +1,6 @@
 before_script:
   - sudo apt-get install libreoffice
+  - sudo apt-get install imagemagick
 
 language: node_js
 
