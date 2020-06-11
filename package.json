@@ -4,7 +4,9 @@
   "description": "The package export ppt, pptx, odp and key files to pdf and/or img(png, jpg, jpeg and etc...).",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "node_modules/.bin/mocha --reporter spec",
+    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
+    "coverage": "nyc npm run test"
   },
   "keywords": [
     "ppt to pdf and/or image",
@@ -24,10 +26,16 @@
   },
   "license": "ISC",
   "dependencies": {
-    "async": "^3.2.0"
+    "async": "^3.2.0",
+    "chai-as-promised": "^7.1.1",
+    "nyc": "^15.1.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
+    "babel-plugin-istanbul": "^6.0.0",
+    "chai": "^4.0.0-canary.2",
+    "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
+    "istanbul": "^0.4.5",
     "mocha": "^7.2.0"
   },
   "engines": {

@@ -1,35 +1,52 @@
 "use strict";
-var expect = require("chai").expect;
-var doc = require("../convert");
-
+var chai = require("chai").use(require("chai-as-promised"));
+var document = require("../convert");
+var expect = chai.expect;
 describe("Convert files to pdf or/and image", function () {
-  let options = {
-    sourceFile: "C:\\document-convert\\metro_powerpoint.pptx",
-    outputDir: "C:\\document-convert\\files\\",
+  const options = {
+    libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\sooffice.exe",
+    sourceFile: "C:\\node\\document-convert\\source\\Metro_Style.pptx",
+    outputDir: "C:\\node\\document-convert\\files\\",
     img: true,
-    imgExt: "jpg",
-    reSize: 800,
-    density: 120,
   };
-  it("should return source file not exist", function () {
-    options.sourceFile = "C:\\document-convert\\source\\metro_powerpoint.pptex";
-    var result = doc.convert(options, function (err) {
-      expect(err.message).to.equal("Source file does not exist.");
+
+  it("Should return libre office bin does not exist", function (done) {
+    document.convert(options).catch((e) => {
+      expect(e.message).to.equal(`${options.libreofficeBin} does not exist`);
+      done();
     });
   });
 
   it("should return invalid extesion", function () {
-    options.sourceFile = "C:\\document-convert\\source\\sample.txt";
-    var result = doc.convert(options, function (err) {
-      expect(err.message).to.equal("Invalid extension.");
+    options.libreofficeBin =
+      "C:\\Program Files\\LibreOffice\\program\\soffice.exe";
+    options.sourceFile = "C:\\node\\document-convert\\source\\sample.txt";
+    document.convert(options).catch((e) => {
+      expect(e.message).to.equal("Invalid extension.");
     });
   });
 
-  it("should return success", function () {
-    options.sourceFile = "C:\\document-convert\\source\\metro_powerpoint.pptx";
-    options.outputDir = "C:\\document-convert\\files\\";
+  it("should convert pdf to image", function () {
+    options.sourceFile = "C:\\node\\document-convert\\source\\Metro_Style.pdf";
+    options.outputDir = "C:\\node\\document-convert\\files\\";
+    options.reSize = 800;
+    document.convert(options).then((res) => {
+      expect(res).to.equal("Success");
+    });
+  });
+
+  it("should convert pdf only", function (done) {
+    options.sourceFile = "C:\\node\\document-convert\\source\\Metro_Style.pptx";
+    options.img = false;
+    document.convert(options).then((res) => {
+      expect(res).to.equal("Success");
+      done();
+    });
+  });
+
+  it("should convert without resize, density and imgExt", function () {
     options.img = true;
-    var result = doc.convert(options, function (err, res) {
+    document.convert(options).then((res) => {
       expect(res).to.equal("Success");
     });
   });
