@@ -45,18 +45,22 @@ convert -verbose -resize 1200 -density 200 test.pdf test-%d.png(%d inserts the i
 const document = require("./convert");
 
 const options = {
-  libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\soffice.exe", // Optional
+  libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\soffice.exe",
   sourceFile: "C:\\convert-pdf-img\\sample.pptx", // .ppt, .pptx, .odp, .key and .pdf
   outputDir: "C:\\convert-pdf-img\\output",
   img: false,
-  imgExt: "jpg", // Default value png
-  reSize: 800, // Default Resize is 1200
-  density: 120, // Default density value is 120
+  imgExt: "jpg", // Optional and default value png
+  reSize: 800, //  Optional and default Resize is 1200
+  density: 120, //  Optional and default density value is 120
 };
 
 // Convert document to pdf and/or image
-document.convert(options, (err, res) => {
-  if (err) console.log(err.message);
-  console.log(res);
-});
+document
+  .convert(options)
+  .then((res) => {
+    console.log("Res1", res);
+  })
+  .catch((e) => {
+    console.log("e", e);
+  });
 ```
