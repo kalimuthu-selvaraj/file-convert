@@ -4,7 +4,7 @@
   "description": "The package export ppt, pptx, odp and key files to pdf and/or img(png, jpg, jpeg and etc...).",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha --reporter spec",
+    "test": "node_modules/.bin/mocha --reporter spec --timeout 1500000",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
     "coverage": "nyc npm run test"
   },
