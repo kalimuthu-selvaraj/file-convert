@@ -1,6 +1,6 @@
 "use strict";
 var chai = require("chai").use(require("chai-as-promised"));
-var document = require("../convert");
+var document = require("../index");
 var expect = chai.expect;
 var path = require("path");
 global.appRoot = path.resolve(__dirname);
