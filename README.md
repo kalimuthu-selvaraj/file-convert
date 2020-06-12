@@ -36,9 +36,9 @@ Mac OS
 /Applications/LibreOffice.app/Contents/MacOS/soffice
 ```
 
-## Imagemagic test
+## Imagemagick test
 
-convert -verbose -resize 1200 -density 200 test.pdf test-%d.png(%d inserts the images `scene number`)
+convert -verbose -resize 1200 -density 200 test.pdf test-%d.png (%d inserts the images `scene number`)
 
 ## Usage Example
 
