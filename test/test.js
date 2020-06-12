@@ -8,7 +8,7 @@ global.appRoot = path.resolve(__dirname);
 describe("Convert files to pdf or/and image", function () {
   const options = {
     libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\sooffice.exe",
-    sourceFile: `${global.appRoot}/source/Metro_Style.pptx`,
+    sourceFile: `${global.appRoot}/source/file_example_PPT_250kB.ppt`,
     outputDir: `${global.appRoot}/files/`,
     img: true,
   };
@@ -29,7 +29,7 @@ describe("Convert files to pdf or/and image", function () {
   });
 
   it("should convert pdf to image", function () {
-    options.sourceFile = `${global.appRoot}/source/Metro_Style.pdf`;
+    options.sourceFile = `${global.appRoot}/source/file_example_PPT_250kB.pdf`;
     options.outputDir = `${global.appRoot}/files/`;
     options.reSize = 800;
     document.convert(options).then((res) => {
@@ -38,7 +38,7 @@ describe("Convert files to pdf or/and image", function () {
   });
 
   it("should convert pdf only", function (done) {
-    options.sourceFile = `${global.appRoot}/source/Metro_Style.pptx`;
+    options.sourceFile = `${global.appRoot}/source/file_example_PPT_250kB.ppt`;
     options.img = false;
     document.convert(options).then((res) => {
       expect(res).to.equal("Success");

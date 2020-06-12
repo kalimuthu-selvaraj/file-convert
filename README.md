@@ -60,7 +60,7 @@ const options = {
 document
   .convert(options)
   .then((res) => {
-    console.log("Res1", res);
+    console.log("res", res); // Success or Error
   })
   .catch((e) => {
     console.log("e", e);

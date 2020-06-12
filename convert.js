@@ -41,9 +41,9 @@ function run(libreOfficeBin, cmd, convert) {
 
     const proc = spawn(_cmd, _args);
 
-    proc.stdout.on("data", (data) => {
-      // console.log("stdout", data.toString());
-    });
+    // proc.stdout.on("data", (data) => {
+    //   // console.log("stdout", data.toString());
+    // });
 
     proc.stderr.on("error", function (err) {
       reject(err);
