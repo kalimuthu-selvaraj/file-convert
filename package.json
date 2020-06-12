@@ -1,5 +1,5 @@
 {
-  "name": "document-convert",
+  "name": "file-convert",
   "version": "1.0.0",
   "description": "The package export ppt, pptx, odp and key files to pdf and/or img(png, jpg, jpeg and etc...).",
   "main": "index.js",
@@ -11,11 +11,11 @@
   "keywords": [
     "ppt to pdf",
     "pptx to pdf",
-    "keynote to",
+    "keynote to pdf",
     "odp to image",
     "ppt to image",
     "pptx to image",
-    "keynote image",
+    "keynote to image",
     "odp to image",
     "pdf to image",
     "imagemagick",
