@@ -9,15 +9,19 @@
     "coverage": "nyc npm run test"
   },
   "keywords": [
-    "ppt to pdf and/or image",
-    "pptx to pdf and/or image",
-    "keynote to pdf and/or image",
-    "odp to pdf and/or image",
-    "ppt convert to pdf",
+    "ppt to pdf",
+    "pptx to pdf",
+    "keynote to",
+    "odp to image",
+    "ppt to image",
+    "pptx to image",
+    "keynote image",
+    "odp to image",
     "pdf to image",
     "imagemagick",
     "ghostscript",
-    "libreoffice"
+    "libreoffice",
+    "keynote to image"
   ],
   "author": {
     "name": "Kalimuthu Selvaraj",
