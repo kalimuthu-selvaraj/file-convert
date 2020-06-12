@@ -44,7 +44,7 @@ convert -verbose -resize 1200 -density 200 test.pdf test-%d.png(%d inserts the i
 
 ```javascript
 // Import convert module
-const document = require("./convert");
+const document = require("document-convert");
 
 const options = {
   libreofficeBin: "C:\\Program Files\\LibreOffice\\program\\soffice.exe",
