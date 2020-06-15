@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const async = require("async");
 const { spawn } = require("child_process");
 
 function parseCommand(librePath, cmd, convert) {
