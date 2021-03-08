@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { spawn } = require("child_process");
+const {spawn} = require("child_process");
 
 function parseCommand(librePath, cmd, convert) {
   let _args = [];
@@ -12,7 +12,7 @@ function parseCommand(librePath, cmd, convert) {
 
   _args = _args.concat(cmd);
 
-  return { _args };
+  return {_args};
 }
 
 function fileExist(file) {
@@ -27,9 +27,22 @@ function fileExist(file) {
   });
 }
 
+const getFileThatExist = async (...files) => {
+  for (const file of files) {
+    if (file && await fileExist(file) === true) {
+      return file;
+    }
+  }
+  return false;
+}
+
+const filesExist = (...files) => {
+  return Promise.resolve(!!getFileThatExist(...files));
+}
+
 function run(libreOfficeBin, cmd, convert) {
   return new Promise((resolve, reject) => {
-    const { _args } = parseCommand(libreOfficeBin, cmd, convert);
+    const {_args} = parseCommand(libreOfficeBin, cmd, convert);
     let _cmd = libreOfficeBin;
 
     if (convert === "img") {
@@ -55,15 +68,17 @@ function run(libreOfficeBin, cmd, convert) {
   });
 }
 
-exports.convert = function ({
-  libreofficeBin,
-  sourceFile,
-  outputDir,
-  img,
-  imgExt,
-  reSize,
-  density,
-}) {
+exports.convert = async ({
+                           libreofficeBin,
+                           libreofficeBins,
+                           sourceFile,
+                           outputDir,
+                           img,
+                           imgExt,
+                           reSize,
+                           density,
+                           disableExtensionCheck
+                         }) => {
   const baseFileName = path.basename(sourceFile);
   const outputFile = baseFileName.replace(/\.[^.]+$/, ".pdf");
 
@@ -100,15 +115,28 @@ exports.convert = function ({
     sourceFile,
     `${outputDir}${outputImg}`,
   ];
+  const libreOfficeBins = [
+    libreofficeBin,
+    ...(Array.isArray(libreofficeBins) ? libreofficeBins : [])
 
-  return fileExist(libreofficeBin).then((binExist) => {
-    if (binExist) {
-      return fileExist(sourceFile).then((srcExist) => {
+  ];
+  if (!libreofficeBin) {
+    libreOfficeBins.push(path.resolve("C:\\\\Program Files\\\\LibreOffice\\\\program\\\\soffice.exe"));
+    libreOfficeBins.push(path.resolve("C:\\\\Program Files (x86)\\\\LibreOffice\\\\program\\\\soffice.exe"));
+    libreOfficeBins.push(path.resolve("C:\\\\Program Files (x86)\\\\LIBREO~1\\\\program\\\\soffice.exe"));
+    libreOfficeBins.push(path.resolve("/usr/bin/libreoffice"));
+    libreOfficeBins.push(path.resolve("/usr/bin/soffice"));
+    libreOfficeBins.push(path.resolve("/Applications/LibreOffice.app/Contents/MacOS/soffice"));
+  }
+
+  return getFileThatExist(...libreOfficeBins).then((libreofficeBin) => {
+    if (libreofficeBin) {
+      return filesExist(sourceFile).then((srcExist) => {
         if (srcExist) {
           if (ext === ".pdf")
             return run(libreofficeBin, pdf2Img, "img").then((res) => res);
 
-          if (extensions.includes(ext)) {
+          if (disableExtensionCheck || extensions.includes(ext)) {
             return run(libreofficeBin, pdf, "pdf").then((pdfRes) => {
               if (pdfRes !== "Error") {
                 if (!img) {
