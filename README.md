@@ -9,6 +9,13 @@ Converts `.ppt` `.pptx` `.odp` and `.key` file to `pdf or/and image(png, jpg, jp
 Please install [libreoffice](https://www.libreoffice.org/), [imagemagick](https://www.imagemagick.org/script/index.php) and might required [ghostscript](https://www.ghostscript.com/) for Mac os
 **(Note: Please do restart your machine after installed all required software.)**
 
+###IMPORTANT    
+Make sure you install libreoffice to the USER you launch nodejs with and that this user HAS a home directory!   
+try to convert a file from inside that USER to properly test!   
+in case you install directly from libreoffice website,      
+MAKE SURE you use the ./install script that comes inside the tar.gz inside the USER!    
+
+
 ## LibreOffice test
 
 libreOfficeInstallationPath --headless --convert-to pdf --outdir outputDir sourceFile(test.pdf),
