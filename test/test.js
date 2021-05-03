@@ -29,6 +29,7 @@ describe("Convert files to pdf or/and image", function () {
   });
 
   it("should convert pdf to image", function () {
+    options.libreofficeBin = "/usr/bin/libreoffice";
     options.sourceFile = `${global.appRoot}/source/file_example.pdf`;
     options.outputDir = `${global.appRoot}/files/`;
     options.reSize = 800;
@@ -38,6 +39,7 @@ describe("Convert files to pdf or/and image", function () {
   });
 
   it("should convert pdf only", function (done) {
+    options.libreofficeBin = "/usr/bin/libreoffice";
     options.sourceFile = `${global.appRoot}/source/file_example.pptx`;
     options.img = false;
     document.convert(options).then((res) => {
@@ -47,6 +49,7 @@ describe("Convert files to pdf or/and image", function () {
   });
 
   it("should convert without resize, density and imgExt", function () {
+    options.libreofficeBin = "/usr/bin/libreoffice";
     options.img = true;
     document.convert(options).then((res) => {
       expect(res).to.equal("Success");
