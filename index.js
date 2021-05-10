@@ -27,7 +27,7 @@ function fileExist(file) {
   });
 }
 
-const getFileThatExist = async function(...files) {
+const getFileThatExist = async (...files) => {
   for (const file of files) {
     if (file && await fileExist(file) === true) {
       return file;
@@ -36,7 +36,7 @@ const getFileThatExist = async function(...files) {
   return false;
 }
 
-const filesExist = function(...files) {
+const filesExist = (...files) => {
   return Promise.resolve(!!getFileThatExist(...files));
 }
 
