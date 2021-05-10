@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/mocha --reporter spec --timeout 1500000",
-    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/* --timeout 1500000",
+    "cover": "nyc node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/* --timeout 1500000",
     "coverage": "nyc npm run test"
   },
   "keywords": [
@@ -38,7 +38,7 @@
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.1.0",
     "cross-env": "^7.0.2",
-    "istanbul": "^0.4.5",
+    "istanbul": "^1.0.0-alpha.2",
     "mocha": "^7.2.0",
     "nyc": "^15.1.0"
   },
